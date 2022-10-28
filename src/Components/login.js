@@ -30,15 +30,19 @@ export default function Login() {
 }
 
 function SendLogin({ email, password}) {
-    console.log(email, password)
     const navigate = useNavigate()
+
     const promise = axios.post(`https://mock-api.driven.com.br/api/v4/driven-plus/auth/login`, { email, password })
+    
     promise.then((response) => {
         localStorage.setItem("User_Info", JSON.stringify(response.data))
         navigate("/subscription")
     });
+
     promise.catch(error => console.log(error))
 }
+
+
 
 const Container = styled.div`
     background-color: #0E0E13;

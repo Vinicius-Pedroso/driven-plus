@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { useState } from 'react';
-import { SignUser } from "./FunctionsAPI";
+import axios from 'axios';
 
 export default function Signup (){
 
@@ -9,6 +9,25 @@ export default function Signup (){
     const [cpf, setCpf] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate()
+
+    function SignUser() {
+
+        const newUser = {
+            email: email,
+            name: name,
+            cpf: cpf,
+            password: password
+        }
+    
+        const signUserData = axios.post(`https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up`, newUser)
+        
+        signUserData.then(response => {
+            console.log(response.data)
+                navigate("/")
+        })
+        signUserData.catch(error => console.log(error))
+    }
 
     return (
         <Container>
@@ -30,6 +49,8 @@ export default function Signup (){
     )
 }
 
+
+
 const Container = styled.div`
     padding-top: 100px;
     background-color: #0E0E13;
@@ -39,11 +60,6 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     }
-`
-
-const Center = styled.div`
-    display: flex;
-    justify-content: center;
 `
 
 const Buttonsign = styled.div`

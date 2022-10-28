@@ -1,40 +1,52 @@
 import styled from 'styled-components';
-import Buttoninput from './buttonInput';
 import Header from './header'
+import {Link, useNavigate} from 'react-router-dom';
+import { useState } from 'react';
+import axios from 'axios';
 
 export default function Login() {
+
+    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
+
     return (
         <Container>
             <Header></Header>
-            <Buttoninput text="E-mail" />
-            <Buttoninput text="Senha" />
 
-            <Center>
-                <Buttonenter >
+            <Buttonregistry type='text' placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)}/>
+            <Buttonregistry type='text' placeholder="senha" value={password} onChange={e => setPassword(e.target.value)}/>
+            
+                <Buttonenter onClick={() => SendLogin({email, password})}>
                     <p>ENTRAR</p>
                 </Buttonenter>
-            </Center>
 
             <Footertext>
-                <p>Não possuí uma conta? Cadastre-se</p>
+                <Link to='/signup'>
+                    <p>Não possuí uma conta? Cadastre-se</p>
+                </Link>
             </Footertext>
         </Container>
     )
+}
+
+function SendLogin({ email, password}) {
+    console.log(email, password)
+    const navigate = useNavigate()
+    const promise = axios.post(`https://mock-api.driven.com.br/api/v4/driven-plus/auth/login`, { email, password })
+    promise.then((response) => {
+        localStorage.setItem("User_Info", JSON.stringify(response.data))
+        navigate("/subscription")
+    });
+    promise.catch(error => console.log(error))
 }
 
 const Container = styled.div`
     background-color: #0E0E13;
     width: 100%;
     height: 100vh;
-    div {
-    display: flex;
+    display: block;
     justify-content: center;
-    }
-`
-
-const Center = styled.div`
-    display: flex;
-    justify-content: center;
+    align-items: center;
 `
 
 const Buttonenter = styled.div`
@@ -65,5 +77,24 @@ const Footertext = styled.div`
         font-size: 14px;
         font-weight: 400;
         text-decoration: underline;
+    }
+`
+const Buttonregistry = styled.input`
+    width: 299px;
+    height: 52px;
+    border: none;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    font-size: 18px;
+    font-family: 'Roboto';
+    ::placeholder {
+        padding-left: 15px;
+        color: #7E7E7E;
+        font-size: 14px;
+        font-family: 'Roboto';
+        font-weight: 400;
     }
 `

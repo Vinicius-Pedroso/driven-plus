@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Plandata from './plandata'
+import ConfirmationPrompt from './confirmationPrompt';
 import {useParams} from 'react-router-dom'
 
 export default function Plan (){
@@ -9,6 +10,7 @@ export default function Plan (){
 
     return (
         <Container>
+            <ConfirmationPrompt></ConfirmationPrompt>
         <ion-icon name="arrow-back-outline"></ion-icon>
         <MiniLogoDriven>
         <img src="./img/vector1.png"/>
@@ -38,6 +40,8 @@ export default function Plan (){
 
 const Container = styled.div`
     background-color: #0E0E13;
+    padding-top: 0px;
+    padding-left: 0px;
     width: 100%;
     height: 100vh;
     display: block;
@@ -58,7 +62,7 @@ const Container = styled.div`
     }
 `
 const MiniLogoDriven = styled.div`
-    padding-top: 60px;
+    padding-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;

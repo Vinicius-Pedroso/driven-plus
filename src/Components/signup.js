@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components';
 import {Link, useNavigate} from 'react-router-dom';
 import { useState } from 'react';
@@ -34,11 +35,18 @@ export default function Signup (){
 
     return (
         <Container>
+            <Center>
             <Buttonregistry type='text' placeholder="Nome" value={name} onChange={e => setName(e.target.value)}/>
+            </Center>
+            <Center>
             <Buttonregistry type='text' placeholder="CPF" value={cpf} onChange={e => setCpf(e.target.value)}/>
+            </Center>
+            <Center>
             <Buttonregistry type='text' placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)}/>
+            </Center>
+            <Center>
             <Buttonregistry type='text' placeholder="Senha" value={password} onChange={e => setPassword(e.target.value)}/>
-
+            </Center>
             <Buttonsign onClick={() => SignUser({name, cpf, email, password})}>
                 <p>CADASTRAR</p>
             </Buttonsign>
@@ -52,8 +60,6 @@ export default function Signup (){
     )
 }
 
-
-
 const Container = styled.div`
     padding-top: 100px;
     background-color: #0E0E13;
@@ -64,18 +70,24 @@ const Container = styled.div`
     justify-content: center;
     }
 `
+const Center = styled.div`
+    display: flex;
+    justify-content: center;
+`
 
 const Buttonsign = styled.div`
-    width: 299px;
-    height: 52px;
-    background-color: #FF4791;
-    border: none;
-    border-radius: 8px;
     display: flex;
-    align-items: center;
     justify-content: center;
-    margin-top: 40px;
     p {
+        width: 299px;
+        height: 52px;
+        background-color: #FF4791;
+        border: none;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 40px;
         color: white;
         font-family: 'Roboto';
         font-size: 14px;
@@ -97,13 +109,13 @@ const Footertext = styled.div`
 `
 
 const Buttonregistry = styled.input`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 299px;
     height: 52px;
     border: none;
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin-top: 15px;
     font-size: 18px;
     font-family: 'Roboto';

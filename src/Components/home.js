@@ -4,7 +4,7 @@ import HomeHeader from './homeHeader'
 
 export default function Home (){
 
-    const id = 1;
+    const id = 3;
 
     return (
         <Container>
@@ -12,9 +12,8 @@ export default function Home (){
 
             <ButtonHome><p>Solicitar brindes</p></ButtonHome>
             <ButtonHome><p>Materias bônus da web</p></ButtonHome>
-            <ButtonHome><p>Aulas bônus de tech</p></ButtonHome>
-            <ButtonHome><p>Mentorias personalizadas</p></ButtonHome>
-
+            { id>= 2 && <ButtonHome><p>Aulas bônus de tech</p></ButtonHome> }
+            { id === 3 && <ButtonHome><p>Mentorias personalizadas</p></ButtonHome> }
             <FooterHome></FooterHome>
         </Container>
     )

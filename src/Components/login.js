@@ -12,10 +12,12 @@ export default function Login() {
     return (
         <Container>
             <Header></Header>
-
+            <Center>
             <Buttonregistry type='text' placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)}/>
+            </Center>
+            <Center>
             <Buttonregistry type='text' placeholder="senha" value={password} onChange={e => setPassword(e.target.value)}/>
-            
+            </Center>
                 <Buttonenter onClick={() => SendLogin({email, password})}>
                     <p>ENTRAR</p>
                 </Buttonenter>
@@ -53,17 +55,25 @@ const Container = styled.div`
     align-items: center;
 `
 
+const Center = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
 const Buttonenter = styled.div`
-    width: 299px;
-    height: 52px;
-    background-color: #FF4791;
-    border: none;
-    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 40px;
     p {
+        display: flex;
+    align-items: center;
+    justify-content: center;
+        width: 299px;
+    height: 52px;
+    background-color: #FF4791;
+    border: none;
+    border-radius: 8px;
         color: white;
         font-family: 'Roboto';
         font-size: 14px;

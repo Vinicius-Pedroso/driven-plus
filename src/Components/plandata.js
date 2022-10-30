@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export default function Plandata (){
+export default function Plandata ({PlanPrice}){
+
     return (
         <Container>
             <SpanFlex>
@@ -13,7 +14,7 @@ export default function Plandata (){
                 <img src='./img/dollar.svg'/>
                 <h2>Preço:</h2>
             </SpanFlex>
-            <p>R$ 39,99 cobrados mensalmente</p>
+            <p>R$ {PlanPrice} cobrados mensalmente</p>
         </Container>
     )
 }

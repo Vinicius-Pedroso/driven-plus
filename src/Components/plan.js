@@ -1,7 +1,12 @@
 import styled from 'styled-components'
 import Plandata from './plandata'
+import {useParams} from 'react-router-dom'
 
 export default function Plan (){
+
+    const idPlan = useParams().idPlan
+    const PlanPrice = 9.99 + 30*idPlan
+
     return (
         <Container>
         <ion-icon name="arrow-back-outline"></ion-icon>
@@ -11,7 +16,7 @@ export default function Plan (){
         <Center>
             <h1>Driven Plus</h1>
         </Center>
-        <Plandata />
+        <Plandata PlanPrice={PlanPrice} />
         <Center>
             <BoxInput type="text" placeholder="Nome impresso no cartão"></BoxInput>
         </Center>

@@ -1,21 +1,28 @@
 import styled from 'styled-components'
+import {Link} from 'react-router-dom'
 
 export default function Subscription (){
     return (
         <Container>
         <h1>Escolha seu Plano</h1>
+        <Link to={`/subscription/${1}`}>
         <Offer >
             <img src="./img/vector1.png"/>
             <h2>R$ 39,99</h2>
         </Offer>
+        </Link>
+        <Link to={`/subscription/${2}`}>
         <Offer >
             <img src="./img/vector2.png"/>
             <h2>R$ 69,99</h2>
         </Offer>
+        </Link>
+        <Link to={`/subscription/${3}`}>
         <Offer >
             <img src="./img/vector3.png"/>
             <h2>R$ 99,99</h2>
         </Offer>
+        </Link>
     </Container>
     );
 }

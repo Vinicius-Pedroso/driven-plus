@@ -20,13 +20,16 @@ export default function Signup (){
             password: password
         }
     
-        const signUserData = axios.post(`https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up`, newUser)
+        const signUserData = axios.post('https://mock-api.driven.com.br/api/v4/driven-plus/auth/sign-up', newUser)
         
         signUserData.then(response => {
             console.log(response.data)
                 navigate("/")
         })
-        signUserData.catch(error => console.log(error))
+        signUserData.catch(error => {
+            console.log(error)
+            alert("Não possível efetuar o cadastro")
+        })
     }
 
     return (

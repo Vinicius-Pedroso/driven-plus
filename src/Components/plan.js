@@ -11,7 +11,7 @@ export default function Plan (){
         <Container>
         <ion-icon name="arrow-back-outline"></ion-icon>
         <MiniLogoDriven>
-            <img src="./img/vector1.png" />
+        <img src="./img/vector1.png"/>
         </MiniLogoDriven>
         <Center>
             <h1>Driven Plus</h1>

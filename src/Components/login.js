@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Header from './header'
 import {Link, useNavigate} from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function Login() {
@@ -9,6 +9,19 @@ export default function Login() {
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
     const navigate = useNavigate()
+
+    const Temp2 = localStorage.getItem("User_Info")
+    const UserData = JSON.parse(Temp2)
+
+    useEffect(() => {
+        if (UserData.membership.id !== null){
+            navigate("/home")
+        }
+        if (UserData.length > 0){
+            navigate("/subscription")
+        }
+    }, [])
+    
 
     function SendLogin({ email, password}) {
 
@@ -56,7 +69,7 @@ export default function Login() {
                     <p>Não possuí uma conta? Cadastre-se</p>
                 </Link>
             </Footertext>
-            
+
         </Container>
     )
 }

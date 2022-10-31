@@ -21,7 +21,7 @@ export default function ConfirmationPrompt ({setConfirmation, idPlan, cardName, 
             expirationDate: expiration
         }
 
-        console.log(PlanDataSend)
+        localStorage.setItem("User_Subscription", JSON.stringify(PlanDataSend))
 
         const MakeSubscription = axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions", PlanDataSend, config)
 

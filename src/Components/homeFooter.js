@@ -1,11 +1,50 @@
 import styled from 'styled-components'
+import axios from 'axios'
+import createHeaders from './auth';
+import {useNavigate} from 'react-router-dom'
 
 export default function HomeFooter() {
+
+    const config = createHeaders();
+    const navigate = useNavigate()
+
+    const Temp2 = localStorage.getItem("User_Subscription")
+    const UserData = JSON.parse(Temp2)
+
+    function HandleDelete (){
+
+        const DeleteSubscription = axios.delete("https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions", config)
+    
+        DeleteSubscription.then(response => {
+            console.log(response)
+            navigate("/subscription")
+        })
+
+        DeleteSubscription.catch(error => console.log(error))
+    }
+
+    function HandleChange (){
+
+        const ChangePlan = UserData
+
+        const ChangeSubscription = axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions", ChangePlan, config)
+
+        ChangeSubscription.then(response =>{
+            console.log(response.status)
+            if (response.status === 201){
+                navigate("/subscription")
+            }
+        })
+        ChangeSubscription.catch(error => {
+            console.log(error)
+        })
+    }
+
     return (
         <Container>            
             
-            <ButtonFooter><p>Mudar plano</p></ButtonFooter>
-            <ButtonFooter2><p>Cancelar plano</p></ButtonFooter2>
+            <ButtonFooter onClick={() => HandleChange()}><p>Mudar plano</p></ButtonFooter>
+            <ButtonFooter2 onClick={() => HandleDelete()}><p>Cancelar plano</p></ButtonFooter2>
 
         </Container>
     )

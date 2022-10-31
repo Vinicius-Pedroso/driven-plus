@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import React from 'react'
+import ConfirmationPrompt from './confirmationPrompt'
 
 export default function Plan() {
 
@@ -13,6 +14,11 @@ export default function Plan() {
     const [data, setData] = useState([])
     const config = createHeaders();
     const image = `../img/vector${idPlan}.png`
+    const [cardName, setCardName] = useState("")
+    const [cardNumber, setCardNumber] = useState("")
+    const [securityNumber, setSecurityNumber] = useState("")
+    const [expiration, setExpiration] = useState("")
+    const [confirmation, setConfirmation] = useState(false)
 
     useEffect(() => {
         const MembershipPlanData = axios.get(`https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships/${idPlan}`, config)
@@ -32,6 +38,9 @@ export default function Plan() {
     }
 
     return (
+        <>
+        
+        {confirmation && <ConfirmationPrompt setConfirmation={setConfirmation} idPlan={data.id}></ConfirmationPrompt>}
         <Container>
             
             <Link to="/subscription">
@@ -45,16 +54,17 @@ export default function Plan() {
 
             <Plandata idPlan={data.id} />
 
-            <BoxInput type="text" placeholder="Nome impresso no cartão"></BoxInput>
-            <BoxInput type="text" placeholder="Digitos do cartão"></BoxInput>
+            <BoxInput type="text" placeholder="Nome impresso no cartão" value={cardName} onChange={e => setCardName(e.target.value)}></BoxInput>
+            <BoxInput type="text" placeholder="Digitos do cartão" value={cardNumber} onChange={e => setCardNumber(e.target.value)}></BoxInput>
             <ButtonSeparation>
-                <BoxInput2 type="text" placeholder="Código de segurança"></BoxInput2>
+                <BoxInput2 type="text" placeholder="Código de segurança" value={securityNumber} onChange={e => setSecurityNumber(e.target.value)}></BoxInput2>
                 <Correctionbox></Correctionbox>
-                <BoxInput2 type="text" placeholder="Validade"></BoxInput2>
+                <BoxInput2 type="text" placeholder="Validade" value={expiration} onChange={e => setExpiration(e.target.value)}></BoxInput2>
             </ButtonSeparation>
-            <ButtonInput ><p>ASSINAR</p></ButtonInput>
+            <ButtonInput onClick={() => setConfirmation(true)}><p>ASSINAR</p></ButtonInput>
             </BlockDiv>
         </Container>
+        </>
     )
 }
 

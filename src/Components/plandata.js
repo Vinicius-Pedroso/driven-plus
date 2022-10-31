@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import ConfirmationPrompt from './confirmationPrompt';
 
 export default function Plandata ({idPlan}){
 

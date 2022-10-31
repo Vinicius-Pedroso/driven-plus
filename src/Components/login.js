@@ -14,12 +14,10 @@ export default function Login() {
     const UserData = JSON.parse(Temp2)
 
     useEffect(() => {
-        if (UserData.membership.id !== null){
+        if (UserData !== null){
             navigate("/home")
         }
-        if (UserData.length > 0){
-            navigate("/subscription")
-        }
+        
     }, [])
     
 

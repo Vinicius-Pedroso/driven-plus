@@ -119,6 +119,9 @@ const NoButton = styled.div`
     border-radius: 8px;
     margin-left: 15px;
     background-color: #CECECE;
+    display: flex;
+        justify-content: center;
+        align-items: center;
     p {
         display: flex;
         justify-content: center;
@@ -135,6 +138,9 @@ const YesButton = styled.div`
     border-radius: 8px;
     margin-left: 15px;
     background-color: #FF4791;
+    display: flex;
+        justify-content: center;
+        align-items: center;
     p {
         display: flex;
         justify-content: center;

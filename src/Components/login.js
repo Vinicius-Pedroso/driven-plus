@@ -19,10 +19,19 @@ export default function Login() {
 
         const promise = axios.post(`https://mock-api.driven.com.br/api/v4/driven-plus/auth/login`, UserLogin)
         
+        promise.catch(error => {
+            alert("Login não foi efetuado corretamente. Mais informações estão disponíveis no console")
+            console.log(error)
+        })
+
         return promise.then((response) => {
             console.log(response)
             localStorage.setItem("User_Info", JSON.stringify(response.data))
-            navigate("/subscription")
+            if (response.data.membership === null){
+                navigate("/subscription")
+            } else {
+                navigate("/home")
+            }
         });
     }
 

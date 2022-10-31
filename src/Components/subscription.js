@@ -1,7 +1,23 @@
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import {useEffect} from 'react';
+import axios from 'axios'
+import React from 'react'
+import createHeaders from './auth';
 
 export default function Subscription (){
+
+    const config = createHeaders();
+
+    useEffect(() => {
+        const MembershipPlans = axios.get(`https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships`, config)
+
+        MembershipPlans.then(response => {
+            console.log(response)
+        })
+        MembershipPlans.catch(error => console.log(error))
+    }, [])
+
     return (
         <Container>
             <h1>Escolha seu Plano</h1>

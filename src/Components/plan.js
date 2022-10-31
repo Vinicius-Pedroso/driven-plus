@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Plandata from './plandata'
-import ConfirmationPrompt from './confirmationPrompt';
+//import ConfirmationPrompt from './confirmationPrompt';
 import {useParams} from 'react-router-dom'
 
 export default function Plan (){
@@ -10,7 +10,7 @@ export default function Plan (){
 
     return (
         <Container>
-            <ConfirmationPrompt></ConfirmationPrompt>
+
         <ion-icon name="arrow-back-outline"></ion-icon>
         <MiniLogoDriven>
         <img src="./img/vector1.png"/>

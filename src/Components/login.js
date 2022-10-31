@@ -37,22 +37,26 @@ export default function Login() {
 
     return (
         <Container>
+
             <Header></Header>
+
             <Center>
-            <Buttonregistry type='text' placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)}/>
+                <Buttonregistry type='text' placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)}/>
             </Center>
             <Center>
-            <Buttonregistry type='text' placeholder="senha" value={password} onChange={e => setPassword(e.target.value)}/>
+                <Buttonregistry type='text' placeholder="senha" value={password} onChange={e => setPassword(e.target.value)}/>
             </Center>
-                <Buttonenter onClick={() => SendLogin({email, password})}>
-                    <p>ENTRAR</p>
-                </Buttonenter>
+
+            <Buttonenter onClick={() => SendLogin({email, password})}>
+                <p>ENTRAR</p>
+            </Buttonenter>
 
             <Footertext>
                 <Link to='/signup'>
                     <p>Não possuí uma conta? Cadastre-se</p>
                 </Link>
             </Footertext>
+            
         </Container>
     )
 }

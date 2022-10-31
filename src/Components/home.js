@@ -4,11 +4,18 @@ import HomeHeader from './homeHeader'
 
 export default function Home (){
 
-    const id = 3;
+    const Temp = localStorage.getItem("User_Plan")
+    const PlanData = JSON.parse(Temp)
+    const id = PlanData.membership.id;
+
+    const Temp2 = localStorage.getItem("User_Info")
+    const UserData = JSON.parse(Temp2)
+
+    console.log(UserData)
 
     return (
         <Container>
-            <HomeHeader id={id}></HomeHeader>
+            <HomeHeader id={id} name={UserData.name}></HomeHeader>
 
             <ButtonHome><p>Solicitar brindes</p></ButtonHome>
             <ButtonHome><p>Materias bônus da web</p></ButtonHome>
@@ -32,7 +39,7 @@ const ButtonHome = styled.li`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 26px;
+    margin-top: 15px;
     p {
         display: flex;
         align-items: center;

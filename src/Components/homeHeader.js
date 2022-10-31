@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default function HomeHeader({id}) {
+export default function HomeHeader({id, name}) {
 
     const idvec = id;
 
@@ -10,7 +10,7 @@ export default function HomeHeader({id}) {
                 <img src={`./img/vector${idvec}.png`} />
                 <img src='./img/UserIcon.png' style={{"height": "32px", "width": "32px"}}/>
             </UpperHeader>
-            <p>Olá Nome!</p>
+            <p>Olá {name}!</p>
         </Container>
     )
 }

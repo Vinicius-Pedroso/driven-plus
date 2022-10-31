@@ -40,7 +40,7 @@ export default function Plan() {
     return (
         <>
         
-        {confirmation && <ConfirmationPrompt setConfirmation={setConfirmation} idPlan={data.id}></ConfirmationPrompt>}
+        {confirmation && <ConfirmationPrompt setConfirmation={setConfirmation} idPlan={data.id} cardName={cardName} cardNumber={cardNumber} securityNumber={securityNumber} expiration={expiration}></ConfirmationPrompt>}
         <Container>
             
             <Link to="/subscription">

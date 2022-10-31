@@ -5,7 +5,7 @@ export default function HomeFooter() {
         <Container>            
             
             <ButtonFooter><p>Mudar plano</p></ButtonFooter>
-            <ButtonFooter2><p>Mentorias personalizadas</p></ButtonFooter2>
+            <ButtonFooter2><p>Cancelar plano</p></ButtonFooter2>
 
         </Container>
     )
@@ -16,7 +16,7 @@ background-color: #0E0E13;
 width: 100%;
 height: 170px;
 display: block;
-bottom: 0px;
+bottom: 10px;
 position: fixed;
 justify-content: center;
 align-items: center;
@@ -48,7 +48,7 @@ const ButtonFooter2 = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;
-margin-top: 26px;
+margin-top: 6px;
 p {
     display: flex;
     align-items: center;

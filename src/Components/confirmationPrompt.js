@@ -2,16 +2,42 @@ import styled from 'styled-components';
 import React from 'react';
 import axios from 'axios';
 import createHeaders from './auth';
+import {useNavigate} from 'react-router-dom'
 
-export default function ConfirmationPrompt ({setConfirmation, idPlan}){
+export default function ConfirmationPrompt ({setConfirmation, idPlan, cardName, cardNumber, securityNumber, expiration}){
 
     const PlanPrice = 9.99 +30*idPlan
+    const config = createHeaders();
+    const navigate = useNavigate()
+    const CorrectSecurity = securityNumber*1
 
     function HandleSubscription (){
         
-        const MakeSubscription = axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions")
+        const PlanDataSend = {
+            membershipId: idPlan,
+            cardName: cardName,
+            cardNumber: cardNumber,
+            securityNumber: CorrectSecurity,
+            expirationDate: expiration
+        }
 
-        MakeSubscription.then()
+        console.log(PlanDataSend)
+
+        const MakeSubscription = axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions", PlanDataSend, config)
+
+        MakeSubscription.then(response =>{
+            console.log(response.status)
+            if (response.status === 201){
+                localStorage.setItem("User_Plan", JSON.stringify(response.data))
+                navigate("/home")
+            } else {
+                alert("Sua tentativa de selecionar um plano não pode ser efetuada!")
+            }
+        })
+        MakeSubscription.catch(error => {
+            console.log(error)
+            alert("Sua tentativa de selecionar um plano não pode ser efetuada!")
+        })
     }
 
     return (
@@ -26,7 +52,7 @@ export default function ConfirmationPrompt ({setConfirmation, idPlan}){
                 </h1>
                 <DealButtons>
                     <NoButton onClick={() => setConfirmation(false)}><p>Não</p></NoButton>
-                    <YesButton><p>SIM</p></YesButton>
+                    <YesButton onClick={() => HandleSubscription()}><p>SIM</p></YesButton>
                 </DealButtons>
             </ConfirmationBox>
         </Center>
